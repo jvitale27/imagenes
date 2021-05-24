@@ -42,7 +42,8 @@ class FileController extends Controller
 
         $imagen = File::create(['url' => $url]);       //insercion en la BD
 
-        return redirect()->route('admin.files.index');
+        //como ahora utilizo Dropzone para seleccionar varios archivos, no puedo redireccionar a la vista
+        //return redirect()->route('admin.files.index');
     }
 
 
