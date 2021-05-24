@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class FileController extends Controller
 {
@@ -25,12 +27,17 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([                            //valido los datos, que hayan elegido una imagen
-            'file' => 'required|image|max:2048'
+            //'file' => 'required|image|max:2048'//esto ya lo valida 'dropzone' o lo achica 'Intervention Image'
+            'file' => 'required|image'
         ]);
+/*
+        //si NO utilizo el plugin 'Intervention Image' puedo hacer lo siguiente para guardar las imagenes
 
         //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
         //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta public\storage\imagenes
+        //renombrando el nombre del archivo, dandole un nombre aleatorio.
        if($request->file('file')){
             //$url = $request->file('file')->store('imagenes');     //me devuelve imagenes/{nombre imagen}
             //esto de abajo es lo mismo que el anterior
@@ -41,9 +48,24 @@ class FileController extends Controller
         }
 
         $imagen = File::create(['url' => $url]);       //insercion en la BD
+*/
 
-        //como ahora utilizo Dropzone para seleccionar varios archivos, no puedo redireccionar a la vista
-        //return redirect()->route('admin.files.index');
+        //si utilizo plugin 'Intervention Image' puedo alterar la imagen a subir http://image.intervention.io/
+
+        //storage_path();                         //devuleve 'C:\xampp\htdocs\imagenes\storage'
+        $nombre = $request->file('file')->getClientOriginalName();   //el nombre del archivo
+        //el nombre del archivo + cadena aleatoria, para que no se pisen los mismos archivos de imagen
+        $nombre = Str::random(10) . $request->file('file')->getClientOriginalName();
+        $ruta = storage_path() . '\app\public\imagenes/' . $nombre;
+
+        //metodo de 'Intervention Image' para guardar imagen.
+        Image::make( $request->file('file'))
+                    ->resize(1024, null, function ($constraint) {        //redimensiono si asi lo quiero
+                            $constraint->aspectRatio(); })
+                    ->save( $ruta);                                     //guarda
+
+        //guardo en la BD la ruta imagenes/{nombre imagen}
+        $imagen = File::create(['url' => 'imagenes/' . $nombre]);       //concateno e insercion en la BD
     }
 
 

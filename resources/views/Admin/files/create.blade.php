@@ -7,14 +7,14 @@
     </x-slot>
 
     <x-slot name="header">
-        <div class="text-xl">Vista de Crear Imagenes</div>
+        <div class="text-xl">Vista de Crear Imágenes</div>
     </x-slot>
 
     {{-- este seria el slot principal --}}
     <div class="container px-20 py-4">
         <div class="w-full bg-white rounded shadow-lg">
             <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">Subir Imagen</div>
+                <div class="font-bold text-xl mb-2">Subir Imágen</div>
 
                     {{-- formulario comun para seleccionar de a un archivo por vez
                      <form action="{{ route('admin.files.store') }}" method="POST" enctype="multipart/form-data">
@@ -31,7 +31,9 @@
                         <button type="submit" class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-5 rounded">Subir imagenes</button>
                     </form>--}}
 
-                    {{-- formulario dropzone para seleccionar varios archivos a la vez https://cdnjs.com/libraries/dropzone https://www.dropzonejs.com/--}}
+                    {{-- formulario dropzone para seleccionar varios archivos a la vez
+                        https://cdnjs.com/libraries/dropzone https://www.dropzonejs.com/
+                        esta plugin envia la informacion haciedo uso de Ajax--}}
                     <form action="{{ route('admin.files.store') }}" method="POST" class="dropzone" id="my-awesome-dropzone">
                         
                     </form>
@@ -51,9 +53,9 @@
                     'X-CSRF-TOKEN' : "{{ csrf_token() }}"   {{-- envio token csrf --}}
                 },
 
-                dictDefaultMessage : "Arrastre imagenes al recuadro para subirlas",
+                dictDefaultMessage : "Arrastre imágenes al recuadro para subirlas",
                 acceptedFiles: "image/*",
-                maxFilesize: 2,             // MB
+                // maxFilesize: 2, // MB       //esto ya lo achica el plugin 'Intervention Image'
                 maxFiles: 4,
                 // paramName: 'picture',  {{-- el nombre utilizado para transferirlas. por defecto 'file' --}}
 
