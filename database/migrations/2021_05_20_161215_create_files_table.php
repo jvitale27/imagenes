@@ -15,7 +15,16 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('user_id');
+
             $table->string('url');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')               //clave foranea con id de tabla users
+                ->onDelete('cascade')      //si elimino un registro de la tabla users me elimina los registros de esta tabla que tienen la correspondiente clave foranea eliminada
+                ->onUpdate('cascade');      //un cambio de id en users se actualiza autom. en user_id de esta tabla
+
             $table->timestamps();
         });
     }

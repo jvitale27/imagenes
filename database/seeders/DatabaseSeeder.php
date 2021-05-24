@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+    	Storage::deleteDirectory('imagenes');	//borro la carpeta public/storage/posts donde almaceno imagenes
+    	Storage::makeDirectory('imagenes');	//creo la carpeta public/storage/posts donde almaceno imagenes
+
+    	// \App\Models\User::factory(10)->create();
     }
 }

@@ -13,6 +13,13 @@ use Intervention\Image\Facades\Image;
 class FileController extends Controller
 {
 
+/*  ESTO AHORA LO HADO CON EL MIDDLEWARE DE LA AGRUPACION DE RUTAS EN EL ARCHIVO web.php
+    //verifico que este logueado, sino lo obliga a loguearse
+    public function __construct(){
+        $this->middleware('auth');
+    }
+*/
+
     public function index()
     {
         return view('admin.files.index');
@@ -47,7 +54,10 @@ class FileController extends Controller
             //$url = Storage::url($url); 
         }
 
-        $imagen = File::create(['url' => $url]);       //insercion en la BD
+        //insercion en la BD
+        $imagen = File::create([
+            'user_id' => auth()->user()->id(),
+            'url'     => $url]);
 */
 
         //si utilizo plugin 'Intervention Image' puedo alterar la imagen a subir http://image.intervention.io/
@@ -65,7 +75,10 @@ class FileController extends Controller
                     ->save( $ruta);                                     //guarda
 
         //guardo en la BD la ruta imagenes/{nombre imagen}
-        $imagen = File::create(['url' => 'imagenes/' . $nombre]);       //concateno e insercion en la BD
+        $imagen = File::create([
+            'user_id' => auth()->user()->id,
+            'url'     => 'imagenes/' . $nombre         //concateno
+        ]);
     }
 
 

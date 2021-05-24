@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\File;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,4 +59,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //relacion 1 a muchos direta
+    public  function files(){                              //metodo que me devuelve los files de un usuario
+        return $this->hasMany(File::class);
+    }
 }

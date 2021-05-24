@@ -56,7 +56,7 @@
                 dictDefaultMessage : "Arrastre imágenes al recuadro para subirlas",
                 acceptedFiles: "image/*",
                 // maxFilesize: 2, // MB       //esto ya lo achica el plugin 'Intervention Image'
-                maxFiles: 4,
+                maxFiles: 30,
                 // paramName: 'picture',  {{-- el nombre utilizado para transferirlas. por defecto 'file' --}}
 
             };
