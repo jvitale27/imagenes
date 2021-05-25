@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\File;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,7 +23,9 @@ class FileController extends Controller
 
     public function index()
     {
-        return view('admin.files.index');
+        $files = File::where('user_id', auth()->user()->id)->paginate(20);
+
+        return view('admin.files.index', compact('files'));
     }
 
 

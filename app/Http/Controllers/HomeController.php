@@ -10,7 +10,7 @@ class HomeController extends Controller
 
     public function index(){
 
-    	$files = File::all();
+    	$files = File::paginate(20);
 
     	return view('welcome', compact('files'));
     }
