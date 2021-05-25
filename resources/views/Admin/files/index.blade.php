@@ -11,7 +11,7 @@
                 @foreach ($files as $file)
                     <div class="md:w-1/3 px-4 mb-3">
                         <img class="rounded shadow-md mb-2" src="{{ Storage::url( $file->url) }}" alt="">
-                        <div class="grid grid-cols-2 w-40 gap-4">
+                        <div class="grid grid-cols-2 w-40 gap-4 mb-4">
                             <a href="{{ route('admin.files.edit', $file) }}" class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-4 rounded">Editar</a>
                             <form action="{{ route('admin.files.destroy', $file) }}" method="POST">
                                 @csrf

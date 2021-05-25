@@ -105,6 +105,13 @@ class FileController extends Controller
 
     public function destroy(File $file)
     {
-        //
+
+        if($file->url)                          //borro el archivo de imagen
+            Storage::delete($file->url); 
+        
+        $file->delete();                        //boroo el registro de la BD
+
+        return redirect()->route('admin.files.index')
+                           ->with('info', 'El post se eliminó con éxito');      //mensaje de sesion
     }
 }
