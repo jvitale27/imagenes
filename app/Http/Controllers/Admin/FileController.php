@@ -74,7 +74,7 @@ class FileController extends Controller
         //metodo de 'Intervention Image' para guardar imagen.
         Image::make( $request->file('file'))
                     ->resize(1024, null, function ($constraint) {        //redimensiono si asi lo quiero
-                            $constraint->aspectRatio(); })
+                            $constraint->aspectRatio();})
                     ->save( $ruta);                                     //guarda
 
         //guardo en la BD la ruta imagenes/{nombre imagen}
@@ -105,13 +105,13 @@ class FileController extends Controller
 
     public function destroy(File $file)
     {
-
         if($file->url)                          //borro el archivo de imagen
             Storage::delete($file->url); 
         
         $file->delete();                        //boroo el registro de la BD
 
         return redirect()->route('admin.files.index')
-                           ->with('info', 'El post se eliminó con éxito');      //mensaje de sesion
+                           ->with('info', 'La imagen se eliminó con éxito');      //mensaje de sesion
+
     }
 }
