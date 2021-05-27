@@ -31,7 +31,8 @@
 
         <div class="min-h-screen bg-gray-100">
 
-            @livewire('navigation-menu')
+<!-- instancio el componente de livewire 'Navigation' que esta en la carpeta App\Http\Livewire\Navigation.php -->
+            @livewire('navigation-menu')        {{-- siempre lo instancio en minusculas --}}
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -44,13 +45,13 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{ $slot }}             {{--aqui va todo el contenido de quien lo invoca o instancia--}}
             </main>
         </div>
 
         @stack('modals')
 
-        @livewireScripts
+        @livewireScripts                {{-- scripts de livewire --}}
 
         {{-- slot para ejecutar scripts desde cualquier plantilla --}}
         @if (isset($mi_js))

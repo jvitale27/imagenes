@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -82,6 +83,7 @@ class FileController extends Controller
             'user_id' => auth()->user()->id,
             'url'     => 'imagenes/' . $nombre         //concateno
         ]);
+    
     }
 
 
@@ -109,6 +111,8 @@ class FileController extends Controller
             Storage::delete($file->url); 
         
         $file->delete();                        //boroo el registro de la BD
+
+        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
 
         return redirect()->route('admin.files.index')
                            ->with('info', 'La imagen se eliminó con éxito');      //mensaje de sesion

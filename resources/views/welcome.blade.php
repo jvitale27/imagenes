@@ -1,4 +1,4 @@
-{{-- llamamos al componente de la pantalla principal --}}
+{{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
 
 {{--     <x-slot name="header">

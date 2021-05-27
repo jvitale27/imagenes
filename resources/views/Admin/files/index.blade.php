@@ -1,4 +1,4 @@
-{{-- llamamos al componente de la pantalla principal --}}
+{{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
 
     <x-slot name="header">
@@ -28,6 +28,7 @@
 
     {{ $files->links() }}
 
+
     <x-slot name="mi_js">
 
         {{-- include de cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
@@ -36,7 +37,7 @@
         {{-- include jquery porque no lo tenia. la carpeta vendor\jquery\ la copio desde otro proyecto --}}
         <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
 
-        {{-- capto el mansaje de session y aviso que ya se elimino con exito --}}
+        {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2 --}}
         @if (session('info'))
             <script>
                 Swal.fire(
@@ -77,5 +78,6 @@
         </script>
 
     </x-slot>
+
 </x-app-layout>
 
