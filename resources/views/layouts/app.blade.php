@@ -19,7 +19,7 @@
             {{ $mi_css }}
         @endif
 
-        @livewireStyles
+        @livewireStyles                     {{-- estilos de livewire --}}
 
         <!-- Scripts. -->
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> este funciona sin problemas--}} 
@@ -31,8 +31,8 @@
 
         <div class="min-h-screen bg-gray-100">
 
-<!-- instancio el componente de livewire 'Navigation' que esta en la carpeta App\Http\Livewire\Navigation.php -->
-            @livewire('navigation-menu')        {{-- siempre lo instancio en minusculas --}}
+<!-- instancio el componente de livewire 'navigation-menu' que esta en views\navigation-menu.blade.php -->
+            @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))

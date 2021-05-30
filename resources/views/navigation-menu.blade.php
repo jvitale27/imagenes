@@ -16,6 +16,7 @@
     ];
 @endphp
 
+{{-- Las view de Livewire SIEMPRE deben estar encerradas en un solo div padre, no puede haber mas de uno --}}
 <nav x-data="{ open: false }" class="bg-blue-100 border-b border-gray-100 shadow">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
