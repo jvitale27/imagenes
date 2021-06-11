@@ -31,12 +31,9 @@
 
     <x-slot name="mi_js">
 
-        {{-- include de cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+        {{-- CDN de cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
-        {{-- include jquery porque no lo tenia. la carpeta vendor\jquery\ la copio desde otro proyecto --}}
-        <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
-
         {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2 --}}
         @if (session('info'))
             <script>
@@ -47,6 +44,10 @@
                 )
             </script>
         @endif
+
+        {{-- include jquery porque no lo tenia. la carpeta vendor\jquery\ la copio desde otro proyecto --}}
+        {{-- lo incluyo directamente en layouts/app.blade.php para tenerlo disponible para todos --}}
+        {{-- <script src="{{ asset('vendor/jquery/jquery.js') }}"></script> --}}
 
         <script>
             {{-- capturo el evento de envio del formulario 'formulario-eliminar' --}}
